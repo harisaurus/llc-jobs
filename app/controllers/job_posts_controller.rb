@@ -1,6 +1,6 @@
 class JobPostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_job_post, only: [:show, :charge]
+  before_action :set_job_post, only: [:show, :charge, :edit, :update]
 
   def index
     @categories = Category.all
@@ -29,18 +29,33 @@ class JobPostsController < ApplicationController
 
   def create
     @job_post = current_user.job_posts.new(job_post_params)
-    @categories = Category.all
-    @job_types = JobType.all
 
     if @job_post.save
       redirect_to @job_post, :alert => "Your post is not published yet. Click Publish to continue."
     else
+      @categories = Category.all
+      @job_types = JobType.all
       render 'new'
     end
   end
 
+  def edit
+    raise ActionController::RoutingError.new('Not Found') unless @job_post.user_id == current_user.try(:id)
+    @categories = Category.all
+    @job_types = JobType.all
+  end
+
+  def update
+    if @job_post.update(job_post_params)
+      redirect_to @job_post, :notice => "Your post is updated"
+    else
+      @categories = Category.all
+      @job_types = JobType.all
+      render 'edit'
+    end
+  end
+
   def show
-    @job_application = @job_post.job_applications.new
     raise ActionController::RoutingError.new('Not Found') if !@job_post.active? && @job_post.user_id != current_user.try(:id)
   end
 

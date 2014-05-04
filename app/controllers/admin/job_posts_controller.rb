@@ -1,5 +1,5 @@
 class Admin::JobPostsController < Admin::AdminAreaController
-  before_action :load_job_post, only: [:activate, :hide_or_show, :reject]
+  before_action :load_job_post, only: [:activate, :hide_or_show, :reject, :edit, :update]
 
   def index
     @job_posts = JobPost.all
@@ -32,14 +32,29 @@ class Admin::JobPostsController < Admin::AdminAreaController
 
   def create
     @job_post = current_admin.job_posts.new(job_post_params)
-    @categories = Category.all
-    @job_types = JobType.all
 
     if @job_post.save
       @job_post.activate
       redirect_to @job_post
     else
+      @categories = Category.all
+      @job_types = JobType.all
       render 'new'
+    end
+  end
+
+  def edit
+    @categories = Category.all
+    @job_types = JobType.all
+  end
+
+  def update
+    if @job_post.update(job_post_params)
+      redirect_to @job_post, :notice => "Your post is updated"
+    else
+      @categories = Category.all
+      @job_types = JobType.all
+      render 'edit'
     end
   end
 

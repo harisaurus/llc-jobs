@@ -11,14 +11,14 @@
     <% end %>
 <% end %>
 
-<% if !@job_post.active? and current_user %>
+<% if !@job_post.active? && current_user && current_user.id == @job_post.user_id %>
 
-<button id="publish-button" class="btn btn-primary">Publish</button>
+  <button id="publish-button" class="btn btn-primary">Publish</button>
 
-<%= form_tag(charge_job_post_path(@job_post), :id => 'stripeForm') do %>
-<%= hidden_field_tag :stripeToken %>
-<%= hidden_field_tag :stripeEmail %>
-<% end %>
+  <%= form_tag(charge_job_post_path(@job_post), :id => 'stripeForm') do %>
+    <%= hidden_field_tag :stripeToken %>
+    <%= hidden_field_tag :stripeEmail %>
+  <% end %>
 <% end %>
 
 <h1><%= @job_post.title %></h1>
@@ -36,7 +36,13 @@
     <div class="post-description"><%= auto_link(BlueCloth.new(@job_post.how_to_apply).to_html).html_safe %></div>
 </div>
 
-<% if !@job_post.active? and current_user %>
+<% if current_user && current_user.id == @job_post.user_id %>
+  <%= link_to('Edit', edit_job_post_path(@job_post), class: "btn btn-danger pull-right") %>
+<% elsif admin_signed_in? %>
+  <%= link_to('Edit', edit_admin_job_post_path(@job_post), class: "btn btn-danger pull-right") %>
+<% end %>
+
+<% if !@job_post.active? && current_user && current_user.id == @job_post.user_id %>
   <script src="https://checkout.stripe.com/checkout.js"></script>
   <script type="text/javascript">
     $(function() {
