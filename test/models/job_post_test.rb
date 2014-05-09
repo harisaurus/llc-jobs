@@ -7,7 +7,7 @@ class JobPostTest < ActiveSupport::TestCase
 
   test "#hide_expired hides expired job postings" do
     @job_post.activate
-    @job_post.update_attributes(expires_at: Time.now - 1.hour)
+    @job_post.update_attributes!(expires_at: Time.now - 1.hour)
 
     JobPost.hide_expired
 

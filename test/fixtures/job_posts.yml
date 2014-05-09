@@ -1,15 +1,12 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
 posting: {
-  title: 'Web Developer',
-  description: 'Can develop web applications',
-  state: 'not_approved'
+  title: "Web Developer",
+  description: "Can develop web applications",
+  state: "not_approved",
+  job_type: permanent,
+  category: management,
+  due_date: "2014-05-04",
+  city: "Ottawa",
+  country: "Canada",
+  company: "Shopify",
+  how_to_apply: "Click this link"
 }
-# column: value
-#
-two: {}
-#  column: value
