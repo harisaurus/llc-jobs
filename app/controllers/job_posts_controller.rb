@@ -1,6 +1,6 @@
 class JobPostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_job_post, only: [:show, :charge, :edit, :update]
+  before_action :set_job_post, only: [:show, :charge, :edit, :update, :hide_or_show]
 
   def index
     @categories = Category.all
@@ -65,6 +65,15 @@ class JobPostsController < ApplicationController
     redirect_to @job_post, :notice => "Thank you for your payment!"
   rescue => e
     redirect_to @job_post, :alert => e.message
+  end
+
+  def hide_or_show
+    if @job_post.hidden?
+      @job_post.show
+    elsif @job_post.active?
+      @job_post.hide
+    end
+    redirect_to @job_post
   end
 
   private

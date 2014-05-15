@@ -42,6 +42,10 @@ class JobPost < ActiveRecord::Base
     end
   end
 
+  def publishable?
+    not_approved? or expired?
+  end
+
   def charge(token, email)
     charge = Stripe::Charge.create(
       :amount => 3000,
