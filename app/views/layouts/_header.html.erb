@@ -5,7 +5,13 @@
             <nav class="col-md-7">
                 <ul class="nav nav-pills">
                     <li><a href="/">All Jobs</a></li>
-                    <li><a href="/job_posts/new">Post a Job</a></li>
+                    <li>
+                        <% if admin_signed_in? %>
+                            <a href="/admin/job_posts/new">Post a Job</a>
+                        <% else %>
+                            <a href="/job_posts/new">Post a Job</a>
+                        <% end %>
+                    </li>
                     <% if admin_signed_in? %>
                         <li><a href="/admin/dashboard">Dashboard</a></li>
                         <li><%= link_to('Logout', destroy_admin_session_path, :method => :delete) %></li>
