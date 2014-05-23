@@ -2,7 +2,7 @@ class Admin::JobPostsController < Admin::AdminAreaController
   before_action :load_job_post, only: [:activate, :hide_or_show, :reject, :edit, :update]
 
   def index
-    @job_posts = JobPost.all
+    @job_posts = JobPost.order("created_at DESC").all
   end
 
   def reject

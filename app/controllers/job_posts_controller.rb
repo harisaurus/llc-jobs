@@ -18,7 +18,7 @@ class JobPostsController < ApplicationController
   end
 
   def user_posts
-    @job_posts = current_user.job_posts.paginate(page: params[:page])
+    @job_posts = current_user.job_posts.order('created_at DESC').paginate(page: params[:page])
   end
 
   def new
