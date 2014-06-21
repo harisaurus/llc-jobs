@@ -1,0 +1,11 @@
+<%= simple_form_for(@admin, :url => { :action => "update_password" }, html: {class: "simple_form"} ) do |f| %>
+  <%= f.input :current_password, input_html: { class: 'form-control' } %>
+  <%= f.input :password, input_html: { class: 'form-control', :autocomplete => "off" } %>
+  <%= f.input :password_confirmation, input_html: { class: 'form-control' } %>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

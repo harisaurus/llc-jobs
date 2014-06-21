@@ -23,6 +23,8 @@ LlcJobboard::Application.routes.draw do
 
   namespace :admin do
     get 'dashboard' => 'dashboard#index'
+    get 'dashboard/edit' => 'dashboard#edit'
+    patch 'dashboard' => 'dashboard#update_password'
     get 'new' => 'dashboard#new_admin'
     post 'create' => 'dashboard#create_admin'
 
