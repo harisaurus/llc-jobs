@@ -2,10 +2,6 @@
 
 http://llc-jobs.herokuapp.com
 
-== Admin Info
-email: admin@ladieslearningcode.com
-password: 1234
-
 == Setup
 * Copy & paste 0-env_values.rb.sample, under config/initializers, then rename the new file to 0-env_values.rb
 * Generate tokens (see http://www.jamesbadger.ca/2012/12/18/generate-new-secret-token/)
