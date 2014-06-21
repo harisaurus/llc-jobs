@@ -1,4 +1,4 @@
-class Admin::JobTypesController < ApplicationController
+class Admin::JobTypesController < Admin::AdminAreaController
   def index
     @job_types = JobType.all
     @job_type = JobType.new
