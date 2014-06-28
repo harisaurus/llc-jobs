@@ -1,4 +1,5 @@
 LlcJobboard::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :admins, :path => 'admin', :path_names => { sign_in: '' }
   devise_for :users
 
