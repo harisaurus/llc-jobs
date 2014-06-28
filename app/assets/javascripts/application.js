@@ -15,4 +15,4 @@
 //= require underscore
 //= require ckeditor/override
 //= require ckeditor/init
-//= require_tree ./ckeditor
+//= require_tree .
