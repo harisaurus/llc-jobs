@@ -1,5 +1,5 @@
 class Admin::JobPostsController < Admin::AdminAreaController
-  before_action :load_job_post, only: [:activate, :hide_or_show, :reject, :edit, :update]
+  before_action :load_job_post, only: [:activate, :hide_or_show, :reject, :edit, :update, :toggle_featured]
 
   def index
     @job_posts = JobPost.order("created_at DESC").paginate(page: params[:page])
@@ -22,6 +22,11 @@ class Admin::JobPostsController < Admin::AdminAreaController
       @job_post.hide
     end
     redirect_to :admin_job_posts
+  end
+
+  def toggle_featured
+    @job_post.update_attributes(featured: !@job_post.featured?)
+    redirect_to :admin_job_posts, notice: @job_post.featured? ? "Successfully featured this job" : "Successfully unfeatured this job"
   end
 
   def new

@@ -5,7 +5,8 @@ class JobPostsController < ApplicationController
   def index
     @categories = Category.all
     @job_types = JobType.all
-    @job_posts = JobPost.active
+    @job_posts = JobPost.active.not_featured
+    @featured_job_posts = JobPost.active.featured
 
     if params[:tag]
       @job_posts = @job_posts.tagged_with(params[:tag])
@@ -14,7 +15,7 @@ class JobPostsController < ApplicationController
       @job_posts = @job_posts.by_job_type(params[:job_type]) if params[:job_type].present?
     end
 
-    @job_posts = @job_posts.order('featured DESC, expires_at DESC').paginate(page: params[:page])
+    @job_posts = @job_posts.order('expires_at DESC').paginate(page: params[:page])
   end
 
   def user_posts

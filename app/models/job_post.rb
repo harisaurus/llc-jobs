@@ -13,6 +13,8 @@ class JobPost < ActiveRecord::Base
   scope :by_job_type, lambda { |job_type_id| where("job_type_id = ?", job_type_id) }
   scope :active, lambda { where("state = 'active'") }
   scope :expired, lambda { where("expires_at < ?", Time.now) }
+  scope :featured, lambda { where(featured: true) }
+  scope :not_featured, lambda { where(featured: [nil, false]) }
 
   validates_presence_of :title, :description, :job_type_id, :category_id, :due_date, :city, :country, :company, :how_to_apply
 

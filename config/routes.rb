@@ -38,6 +38,7 @@ LlcJobboard::Application.routes.draw do
         put 'activate'
         put 'reject'
         put 'hide_or_show'
+        put 'toggle_featured'
       end
     end
   end

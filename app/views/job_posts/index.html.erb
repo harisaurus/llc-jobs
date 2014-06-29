@@ -5,20 +5,14 @@
 </ul>
 
 <div class="list-group job-posts">
-    <% @job_posts.each do |job_post| %>
-        <%= link_to job_post, :class => (job_post.featured? ? 'featured-item list-group-item' : 'list-group-item') do %>
-            <div class="job-post-heading">
-                <h4 class="job-post-title"><%= job_post.title %></h4>
-                <span class="job-post-type"><%= job_post.job_type.name %></span>
-                <% if job_post.is_fresh? %>
-                    <span class="label label-primary">NEW</span>
-                <% end %>
-            </div>
-            <p class="list-group-item-text">
-                <span class="job-post-company"><%= job_post.company %></span>
-                <span class="job-post-location"><%= "(#{job_post.city}, #{job_post.country})" %></span>
-            </p>
-        <% end %>
-    <% end %>
-    <%= will_paginate %>
+  <% @featured_job_posts.each do |job_post| %>
+    <%= render partial: 'job_post_section', locals: {job_post: job_post} %>
+  <% end %>
+</div>
+
+<div class="list-group job-posts">
+  <% @job_posts.each do |job_post| %>
+    <%= render partial: 'job_post_section', locals: {job_post: job_post} %>
+  <% end %>
+  <%= will_paginate %>
 </div>

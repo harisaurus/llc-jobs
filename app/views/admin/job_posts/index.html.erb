@@ -19,6 +19,11 @@
       <%= link_to('Reject', {action: :reject, id: job_post.id}, method: :put, class: "btn btn-danger") %>
     <% elsif job_post.active? %>
       <p><span title="<%= job_post.expires_at.strftime("%a, %B %d %Y") %>" ><%= expiry_info(job_post) %></span></p>
+      <% if job_post.featured? %>
+        <%= link_to('Unfeature', {action: :toggle_featured, id: job_post.id}, method: :put, class: "btn btn-danger") %>
+      <% else %>
+        <%= link_to('Feature', {action: :toggle_featured, id: job_post.id}, method: :put, class: "btn btn-success") %>
+      <% end %>
       <%= link_to('Hide', {action: :hide_or_show, id: job_post.id}, method: :put, class: "btn btn-danger") %>
     <% elsif job_post.hidden? %>
       <%= link_to('Show', {action: :hide_or_show, id: job_post.id}, method: :put, class: "btn btn-primary") %>
