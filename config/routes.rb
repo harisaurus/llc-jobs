@@ -12,6 +12,7 @@ LlcJobboard::Application.routes.draw do
 
     member do
       post 'charge'
+      post 'feature'
       put 'hide_or_show'
     end
   end
