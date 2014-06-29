@@ -6,15 +6,12 @@
 
 <div class="list-group job-posts">
     <% @job_posts.each do |job_post| %>
-        <%= link_to job_post, :class => 'list-group-item' do %>
+        <%= link_to job_post, :class => (job_post.featured? ? 'featured-item list-group-item' : 'list-group-item') do %>
             <div class="job-post-heading">
                 <h4 class="job-post-title"><%= job_post.title %></h4>
                 <span class="job-post-type"><%= job_post.job_type.name %></span>
                 <% if job_post.is_fresh? %>
                     <span class="label label-primary">NEW</span>
-                <% end %>
-                <% if job_post.featured? %>
-                    <span class="label label-success">FEATURED</span>
                 <% end %>
             </div>
             <p class="list-group-item-text">
