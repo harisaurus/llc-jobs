@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore
+//= require ckeditor/override
+//= require ckeditor/init
 //= require_tree .

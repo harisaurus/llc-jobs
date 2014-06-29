@@ -48,6 +48,9 @@ GEM
     byebug (2.6.0)
       columnize (~> 0.3)
       debugger-linecache (~> 1.2)
+    ckeditor (4.0.7)
+      mime-types
+      orm_adapter
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -189,6 +192,7 @@ DEPENDENCIES
   binding_of_caller
   bluecloth
   byebug
+  ckeditor
   coffee-rails (~> 4.0.0)
   country_select
   devise

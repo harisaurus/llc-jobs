@@ -25,6 +25,8 @@ gem "will_paginate", "~> 3.0.5"
 gem "less-rails"
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'byebug'
+gem 'ckeditor'
+
 
 group :production do
   gem 'pg'
