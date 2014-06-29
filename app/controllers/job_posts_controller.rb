@@ -6,7 +6,7 @@ class JobPostsController < ApplicationController
     @categories = Category.all
     @job_types = JobType.all
     @job_posts = JobPost.active.not_featured
-    @featured_job_posts = JobPost.active.featured
+    @featured_job_posts = JobPost.active.featured.order('expires_at DESC')
 
     if params[:tag]
       @job_posts = @job_posts.tagged_with(params[:tag])
