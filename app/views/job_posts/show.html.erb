@@ -11,14 +11,58 @@
     <% end %>
 <% end %>
 
-<% if @job_post.publishable? && current_user && current_user.id == @job_post.user_id %>
+<% if show_publish?(@job_post) || show_feature?(@job_post) %>
+  <% if show_feature?(@job_post) %>
+    <%= button_tag "Feature my post", method: :put, class: "btn btn-success", id: "publish-button" %>
+  <% else %>
+    <button id="publish-button" class="btn btn-primary">Publish</button>
+  <% end %>
 
-  <button id="publish-button" class="btn btn-primary">Publish</button>
-
-  <%= form_tag(charge_job_post_path(@job_post), :id => 'stripeForm') do %>
+  <%= form_tag(show_feature?(@job_post) ? feature_job_post_path(@job_post) : charge_job_post_path(@job_post), :id => 'stripeForm') do %>
     <%= hidden_field_tag :stripeToken %>
     <%= hidden_field_tag :stripeEmail %>
   <% end %>
+
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      var handler = StripeCheckout.configure({
+        key: '<%= ENV["stripe_public_token"] %>',
+        token: function(token, args) {
+          document.getElementById("stripeToken").value = token.id;
+          document.getElementById("stripeEmail").value = token.email;
+          document.getElementById("stripeForm").submit();
+        }
+      });
+
+      document.getElementById('publish-button').addEventListener('click', function(e) {
+        // Open Checkout with further options
+        var is_feature = <%= show_feature?(@job_post) ? "true" : "false" %>
+        var publish_options = {
+          name: 'Ladies Learning Code',
+          description: 'Job Post for 30 days ($30.00)',
+          amount: 3000,
+          currency: 'CAD',
+          email: "<%= current_user.email %>"
+        }
+
+        var feature_options = {
+          name: 'Ladies Learning Code',
+          description: 'Feature this job post',
+          amount: 2000,
+          currency: 'CAD',
+          email: "<%= current_user.email %>"
+        }
+
+        if (is_feature) {
+          handler.open(feature_options);
+        } else {
+          handler.open(publish_options);
+        }
+        e.preventDefault();
+      });
+    });
+  </script>
 <% end %>
 
 <h1><%= @job_post.title %></h1>
@@ -48,32 +92,3 @@
     <%= link_to('Edit', edit_admin_job_post_path(@job_post), class: "btn btn-danger") %>
   <% end %>
 </div>
-
-<% if @job_post.publishable? && current_user && current_user.id == @job_post.user_id %>
-  <script src="https://checkout.stripe.com/checkout.js"></script>
-  <script type="text/javascript">
-    $(function() {
-      var handler = StripeCheckout.configure({
-        key: '<%= ENV["stripe_public_token"] %>',
-        // image: '/square-image.png',
-        token: function(token, args) {
-          document.getElementById("stripeToken").value = token.id;
-          document.getElementById("stripeEmail").value = token.email;
-          document.getElementById("stripeForm").submit();
-        }
-      });
-
-      document.getElementById('publish-button').addEventListener('click', function(e) {
-        // Open Checkout with further options
-        handler.open({
-          name: 'Ladies Learning Code',
-          description: 'Job Post for 30 days ($30.00)',
-          amount: 3000,
-          currency: 'CAD',
-          email: "<%= current_user.email %>"
-        });
-        e.preventDefault();
-      });
-    });
-  </script>
-<% end %>

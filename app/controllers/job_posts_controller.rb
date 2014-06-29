@@ -1,6 +1,6 @@
 class JobPostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_job_post, only: [:show, :charge, :edit, :update, :hide_or_show]
+  before_action :set_job_post, only: [:show, :charge, :edit, :update, :hide_or_show, :feature]
 
   def index
     @categories = Category.all
@@ -14,7 +14,7 @@ class JobPostsController < ApplicationController
       @job_posts = @job_posts.by_job_type(params[:job_type]) if params[:job_type].present?
     end
 
-    @job_posts = @job_posts.order('expires_at DESC').paginate(page: params[:page])
+    @job_posts = @job_posts.order('featured DESC, expires_at DESC').paginate(page: params[:page])
   end
 
   def user_posts
@@ -57,6 +57,14 @@ class JobPostsController < ApplicationController
 
   def show
     raise ActionController::RoutingError.new('Not Found') if !@job_post.active? && @job_post.user_id != current_user.try(:id)
+  end
+
+  def feature
+    @job_post.feature(params[:stripeToken], params[:stripeEmail])
+
+    redirect_to @job_post, :notice => "Thank you for your payment!"
+  rescue => e
+    redirect_to @job_post, :alert => e.message
   end
 
   def charge

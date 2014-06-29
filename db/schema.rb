@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523015850) do
+ActiveRecord::Schema.define(version: 20140629004552) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140523015850) do
     t.datetime "old_at"
     t.text     "how_to_apply"
     t.integer  "admin_id"
+    t.boolean  "featured"
   end
 
   add_index "job_posts", ["admin_id"], name: "index_job_posts_on_admin_id"

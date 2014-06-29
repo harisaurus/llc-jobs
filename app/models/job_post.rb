@@ -44,6 +44,14 @@ class JobPost < ActiveRecord::Base
     not_approved? or expired?
   end
 
+  def by_user?
+    user_id.present?
+  end
+
+  def by_admin?
+    admin_id.present?
+  end
+
   def charge(token, email)
     charge = Stripe::Charge.create(
       :amount => 3000,
@@ -56,6 +64,23 @@ class JobPost < ActiveRecord::Base
       transactions.create(stripe_response: charge)
       activate
       UserMailer.confirmation_email(email, self).deliver
+    elsif charge["failure_message"]
+      raise StandardError, "Credit card charge failed with this message: #{charge["failure_message"]}"
+    end
+  end
+
+  def feature(token, email)
+    charge = Stripe::Charge.create(
+      :amount => 2000,
+      :currency => "cad",
+      :card => token,
+      :description => "#{email} featured #{title}"
+    )
+
+    if charge["paid"] && !charge["failure_code"]
+      transactions.create(stripe_response: charge)
+      update_attributes(featured: true)
+      UserMailer.confirmation_email_for_feature(email, self).deliver
     elsif charge["failure_message"]
       raise StandardError, "Credit card charge failed with this message: #{charge["failure_message"]}"
     end

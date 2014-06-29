@@ -13,6 +13,9 @@
                 <% if job_post.is_fresh? %>
                     <span class="label label-primary">NEW</span>
                 <% end %>
+                <% if job_post.featured? %>
+                    <span class="label label-success">FEATURED</span>
+                <% end %>
             </div>
             <p class="list-group-item-text">
                 <span class="job-post-company"><%= job_post.company %></span>
