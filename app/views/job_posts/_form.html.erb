@@ -3,7 +3,7 @@
 <%= f.input :company, input_html: { class: 'form-control' } %>
 <%= f.input :description, as: :ckeditor, input_html: { class: 'form-control' } %>
 <%= f.input :how_to_apply, as: :ckeditor, input_html: { class: 'form-control' } %>
-<%= f.input :due_date, label: "Expiry Date", input_html: { class: 'form-control date-fragment' } %>
+<%= f.input :due_date, label: "Expiry Date", default: 30.days.from_now, input_html: { class: 'form-control date-fragment' } %>
 <%= f.input :category_id, as: :select, collection: @categories, input_html: { class: 'form-control date-fragment' }  %>
 <%= f.input :job_type_id, as: :select, collection: @job_types, input_html: { class: 'form-control date-fragment' }  %>
 <%= f.input :tag_list, label: "Tags (separated by commas) - Some examples: html, rails, css3", input_html: { class: 'form-control' } %>
