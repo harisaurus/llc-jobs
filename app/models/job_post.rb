@@ -73,7 +73,7 @@ class JobPost < ActiveRecord::Base
 
   def feature(token, email)
     charge = Stripe::Charge.create(
-      :amount => 2000,
+      :amount => 2500,
       :currency => "cad",
       :card => token,
       :description => "#{email} featured #{title}"
