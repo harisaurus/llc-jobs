@@ -12,6 +12,6 @@ module JobPostsHelper
   end
 
   def show_feature?(job_post)
-    job_post.active? && job_post.by_user? && current_user.id == job_post.user_id && !job_post.featured
+    job_post.active? && job_post.by_user? && current_user.try(:id) == job_post.user_id && !job_post.featured
   end
 end
