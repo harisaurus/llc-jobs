@@ -27,4 +27,6 @@ stylesheets
 #Gemset
 .ruby-gemset
 
+.env
+
 /config/initializers/0-env_values.rb
