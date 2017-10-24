@@ -127,6 +127,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    pg (0.21.0)
     polyglot (0.3.5)
     rack (1.5.5)
     rack-test (0.6.3)
@@ -222,6 +223,7 @@ DEPENDENCIES
   linkedin
   newrelic_rpm
   paperclip (~> 3.0)
+  pg
   rails (= 4.0.6)
   rails_12factor
   rails_autolink
