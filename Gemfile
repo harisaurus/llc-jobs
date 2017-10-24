@@ -30,7 +30,7 @@ gem 'ckeditor'
 
 
 group :production do
-  # gem 'pg'
+  gem 'pg'
   gem 'rails_12factor'
   gem 'newrelic_rpm'
 end
