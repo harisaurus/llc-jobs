@@ -76,6 +76,10 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     erubi (1.7.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -211,6 +215,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   country_select
   devise
+  dotenv-rails
   geocoder
   gmaps4rails
   jbuilder (~> 1.2)
