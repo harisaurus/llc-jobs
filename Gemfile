@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
-# ruby '2.0.0' # 2.0.0-p247
 ruby '2.3.0'
 
-# gem 'rails', '4.0.5'
 gem 'rails', '4.0.6'
 
 gem 'sass-rails', '~> 4.0.0'
