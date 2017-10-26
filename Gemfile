@@ -22,7 +22,7 @@ gem 'bluecloth'
 gem 'geocoder'
 gem 'rails_autolink'
 gem "will_paginate", "~> 3.0.5"
-gem "less-rails"
+gem "less-rails", "~> 2.8.0"
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'byebug'
 gem 'ckeditor'
