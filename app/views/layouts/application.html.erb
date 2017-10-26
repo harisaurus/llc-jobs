@@ -6,8 +6,6 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-  <link href='http://fonts.googleapis.com/css?family=Quicksand:700' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
   <%= favicon_link_tag 'favicon.ico' %>
 </head>
@@ -16,6 +14,8 @@
 <%= render "layouts/header" %>
 
 <div class="container">
+  <h1 class="site-title">Jobs</h1>
+
     <% if job_posts? %>
       <ul class="job-categories nav nav-tabs nav-justified">
         <li><a href="/">All Jobs</a></li>
