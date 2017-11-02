@@ -1,4 +1,4 @@
-== Ladies Learning Code - Jobs
+== Canada Learning Code - Jobs
 
 http://llc-jobs.herokuapp.com
 
