@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
+ruby '2.5.0'
 
-gem 'rails', '4.0.6'
+gem 'rails', '4.2.8'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -35,7 +35,7 @@ group :production do
 end
 
 group :development do
-  gem 'sqlite3'
+  gem 'sqlite3', "~> 1.3.6"
   gem "better_errors"
   gem "binding_of_caller"
   gem "dotenv-rails"

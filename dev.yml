@@ -1,0 +1,14 @@
+---
+name: llc-jobs
+
+up:
+  - ruby: 2.5.0
+  - bundler
+
+commands:
+  console:
+    desc: start a rails console
+    run: bin/rails console
+  server:
+    desc: start Rails server
+    run: bin/rails server
