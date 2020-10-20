@@ -18,7 +18,7 @@ gem 'underscore-rails'
 gem 'simple_form'
 gem 'country_select'
 gem 'linkedin'
-gem 'bluecloth'
+gem 'kramdown'
 gem 'geocoder'
 gem 'rails_autolink'
 gem "will_paginate", "~> 3.0.5"
