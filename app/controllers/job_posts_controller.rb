@@ -30,6 +30,7 @@ class JobPostsController < ApplicationController
 
   def create
     @job_post = current_user.job_posts.new(job_post_params)
+    @job_post.state = 'not_approved'
 
     if @job_post.save
       redirect_to @job_post, :alert => "Your post is not published yet. Click Publish to continue."
