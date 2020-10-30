@@ -37,6 +37,7 @@ class Admin::JobPostsController < Admin::AdminAreaController
 
   def create
     @job_post = current_admin.job_posts.new(job_post_params)
+    @job_post.state = 'not_approved'
 
     if @job_post.save
       @job_post.activate

@@ -1,4 +1,17 @@
 <%= simple_form_for(@job_post, :url => url) do |f| %>
+<% if @job_post.valid? %>
+    <p>valid</p>
+<% else %>
+    <p>Not valid</p>
+<% end %>
+
+<% if @job_post.errors %>
+    <ul>
+        <% @job_post.errors.each do | error | %>
+            <li><%= error.to_s %>
+        <% end %>
+    </ul>
+<%end%>
 <%= f.input :title, input_html: { class: 'form-control' } %>
 <%= f.input :company, input_html: { class: 'form-control' } %>
 <div class="help-block">
