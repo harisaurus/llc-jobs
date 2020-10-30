@@ -13,7 +13,7 @@ gem 'acts-as-taggable-on', '~> 2.4.1'
 gem 'devise'
 gem 'gmaps4rails'
 gem 'state_machine'
-gem "paperclip", "~> 3.0"
+gem "paperclip", "~> 5.2"
 gem 'underscore-rails'
 gem 'simple_form'
 gem 'country_select'
