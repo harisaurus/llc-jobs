@@ -110,7 +110,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jwt (2.2.2)
-    kramdown (2.3.0)
+    kramdown (2.3.1)
       rexml
     less (2.6.0)
       commonjs (~> 0.2.7)
